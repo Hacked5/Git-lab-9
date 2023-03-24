@@ -27,10 +27,21 @@ int main() {
     int highest = getHighest(dailyLow);
     double average = getAverage(dailyLow);
 
-    // display results
+    // output results to terminal
     cout << "Lowest daily low temperature: " << lowest << endl;
     cout << "Highest daily low temperature: " << highest << endl;
     cout << "Average daily low temperature: " << average << endl;
+
+    // output results to text file
+    ofstream outfile("results.txt");
+    if (outfile.fail()) {
+        cout << "Failed to open file.\n";
+        return 1;
+    }
+    outfile << "Lowest daily low temperature: " << lowest << endl;
+    outfile << "Highest daily low temperature: " << highest << endl;
+    outfile << "Average daily low temperature: " << average << endl;
+    outfile.close();
 
     return 0;
 }
@@ -66,4 +77,3 @@ double getAverage(int dailyLow[]) {
     double average = static_cast<double>(sum) / 30;
     return average;
 }
-
